@@ -26,8 +26,11 @@ add_library(
     ${PROJECT_NAME} 
     STATIC
         ${_INC_DIR}/Ros2Application.h
+        ${_INC_DIR}/Ros2Game.h
+        ${_INC_DIR}/defines/Ros2GameEngineFunctionalDefines.h
         
         ${_SRC_DIR}/Ros2Application.cpp
+        ${_SRC_DIR}/Ros2Game.cpp
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})

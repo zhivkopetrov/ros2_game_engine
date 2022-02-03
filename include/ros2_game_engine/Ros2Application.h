@@ -21,7 +21,12 @@ public:
   Ros2Application(std::unique_ptr<Game> game);
   ~Ros2Application() noexcept;
 
-  int32_t run(const std::vector<std::shared_ptr<rclcpp::Node>>& nodes);
+  int32_t init(const ApplicationConfig& cfg);
+
+  int32_t run();
+
+  void registerNode(const std::shared_ptr<rclcpp::Node>& node);
+  void unregisterNode(const std::shared_ptr<rclcpp::Node>& node);
 
 private:
   int32_t loadDependencies(int32_t argc, char **args) override;
