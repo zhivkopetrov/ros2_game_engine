@@ -35,7 +35,7 @@ private:
   std::thread _ros2ExecutorThread;
 
   /* StaticSingleThreadedExecutor expects all nodes to have their
-   * publishers, subsriptions, ros timers created during initialization
+   * publishers, subscriptions, ros timers, etc...created during initialization
    *
    * NOTE: constructor of the executor expects ros to be initialized
    * */
