@@ -28,6 +28,9 @@ int32_t Ros2Application::init(const ApplicationConfig &cfg) {
     return FAILURE;
   }
 
+  _executor =
+      std::make_unique<rclcpp::executors::StaticSingleThreadedExecutor>();
+
   using namespace std::placeholders;
   const auto registerNodeCb =
       std::bind(&Ros2Application::registerNode, this, _1);
@@ -67,20 +70,3 @@ void Ros2Application::unregisterNode(
   _executor->remove_node(node);
 }
 
-int32_t Ros2Application::loadDependencies(int32_t argc, char **args) {
-  if (SUCCESS != Application::loadDependencies(argc, args)) {
-    LOGERR("Error in Application::loadDependencies() -> Terminating ...");
-    return FAILURE;
-  }
-
-  rclcpp::init(argc, args);
-
-  _executor =
-      std::make_unique<rclcpp::executors::StaticSingleThreadedExecutor>();
-  return SUCCESS;
-}
-
-void Ros2Application::unloadDependencies() {
-  rclcpp::shutdown();
-  Application::unloadDependencies();
-}

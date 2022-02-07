@@ -29,9 +29,6 @@ public:
   void unregisterNode(const std::shared_ptr<rclcpp::Node>& node);
 
 private:
-  int32_t loadDependencies(int32_t argc, char **args) override;
-  void unloadDependencies() override;
-
   std::thread _ros2ExecutorThread;
 
   /* StaticSingleThreadedExecutor expects all nodes to have their
