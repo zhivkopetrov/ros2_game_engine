@@ -1,5 +1,5 @@
-#ifndef ROS2_GAME_ENGINE_ROS2GAMEENGINEFUNCTIONALDEFINES_H_
-#define ROS2_GAME_ENGINE_ROS2GAMEENGINEFUNCTIONALDEFINES_H_
+#ifndef ROS2_GAME_ENGINE_ROS2COMMUNICATOR_INTERFACE_H_
+#define ROS2_GAME_ENGINE_ROS2COMMUNICATOR_INTERFACE_H_
 
 //C system headers
 
@@ -22,4 +22,9 @@ using RegisterNodeCb =
 using UnregisterNodeCb =
     std::function<void(const std::shared_ptr<rclcpp::Node>& node)>;
 
-#endif /* ROS2_GAME_ENGINE_ROS2GAMEENGINEFUNCTIONALDEFINES_H_ */
+struct Ros2CommunicatorInterface {
+  RegisterNodeCb registerNodeCb;
+  UnregisterNodeCb unregisterNodeCb;
+};
+
+#endif /* ROS2_GAME_ENGINE_ROS2COMMUNICATOR_INTERFACE_H_ */

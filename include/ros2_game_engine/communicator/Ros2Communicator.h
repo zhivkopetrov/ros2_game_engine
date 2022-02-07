@@ -1,29 +1,27 @@
-#ifndef ROS2_GAME_ENGINE_ROS2APPLICATION_H_
-#define ROS2_GAME_ENGINE_ROS2APPLICATION_H_
+#ifndef ROS2_GAME_ENGINE_ROS2COMMUNICATOR_H_
+#define ROS2_GAME_ENGINE_ROS2COMMUNICATOR_H_
 
 //C system headers
 
 //C++ system headers
 #include <cstdint>
-#include <memory>
 #include <thread>
 
 //Other libraries headers
 #include <rclcpp/executors/static_single_threaded_executor.hpp>
-#include "game_engine/Application.h"
+#include "game_engine/Communicator.h"
 
 //Own components headers
 
 //Forward declarations
 
-class Ros2Application : public Application {
+class Ros2Communicator final : public Communicator {
 public:
-  Ros2Application(std::unique_ptr<Game> game);
-  ~Ros2Application() noexcept;
+  int32_t init(const std::any& cfg) override;
+  void deinit() override;
 
-  int32_t init(const ApplicationConfig& cfg);
-
-  int32_t run();
+  void start() override;
+  void shutdown() override;
 
   void registerNode(const std::shared_ptr<rclcpp::Node>& node);
   void unregisterNode(const std::shared_ptr<rclcpp::Node>& node);
@@ -36,7 +34,7 @@ private:
    *
    * NOTE: constructor of the executor expects ros to be initialized
    * */
-  std::unique_ptr<rclcpp::executors::StaticSingleThreadedExecutor> _executor;
+  rclcpp::executors::StaticSingleThreadedExecutor _executor;
 };
 
-#endif /* ROS2_GAME_ENGINE_ROS2APPLICATION_H_ */
+#endif /* ROS2_GAME_ENGINE_ROS2COMMUNICATOR_H_ */

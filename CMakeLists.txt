@@ -25,12 +25,10 @@ set(_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 add_library(
     ${PROJECT_NAME} 
     STATIC
-        ${_INC_DIR}/Ros2Application.h
-        ${_INC_DIR}/Ros2Game.h
-        ${_INC_DIR}/defines/Ros2GameEngineFunctionalDefines.h
+        ${_INC_DIR}/communicator/Ros2Communicator.h
+        ${_INC_DIR}/communicator/Ros2CommunicatorInterface.h
         
-        ${_SRC_DIR}/Ros2Application.cpp
-        ${_SRC_DIR}/Ros2Game.cpp
+        ${_SRC_DIR}/communicator/Ros2Communicator.cpp
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
