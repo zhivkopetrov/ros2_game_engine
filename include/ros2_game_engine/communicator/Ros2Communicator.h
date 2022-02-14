@@ -9,7 +9,7 @@
 
 //Other libraries headers
 #include <rclcpp/executors/static_single_threaded_executor.hpp>
-#include "game_engine/Communicator.h"
+#include "game_engine/communicator/Communicator.h"
 
 //Own components headers
 
