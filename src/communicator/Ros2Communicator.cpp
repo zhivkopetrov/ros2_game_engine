@@ -21,7 +21,7 @@ void Ros2Communicator::deinit() {
 
 void Ros2Communicator::start() {
   _ros2ExecutorThread = std::thread([this]() {
-    LOGG("Spinning on ROS2 executor");
+    LOG("Spinning on ROS2 StaticSingleThreadedExecutor");
     //blocking call
     _executor.spin();
   });
