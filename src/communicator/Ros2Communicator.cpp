@@ -1,9 +1,7 @@
 //Corresponding header
 #include "ros2_game_engine/communicator/Ros2Communicator.h"
 
-//C system headers
-
-//C++ system headers
+//System headers
 
 //Other libraries headers
 #include "utils/ErrorCode.h"
@@ -11,8 +9,8 @@
 
 //Own components headers
 
-int32_t Ros2Communicator::init([[maybe_unused]]const std::any& cfg) {
-  return SUCCESS;
+ErrorCode Ros2Communicator::init([[maybe_unused]]const std::any& cfg) {
+  return ErrorCode::SUCCESS;
 }
 
 void Ros2Communicator::deinit() {

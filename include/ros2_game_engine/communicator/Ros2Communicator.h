@@ -1,9 +1,7 @@
 #ifndef ROS2_GAME_ENGINE_ROS2COMMUNICATOR_H_
 #define ROS2_GAME_ENGINE_ROS2COMMUNICATOR_H_
 
-//C system headers
-
-//C++ system headers
+//System headers
 #include <cstdint>
 #include <thread>
 
@@ -17,7 +15,7 @@
 
 class Ros2Communicator final : public Communicator {
 public:
-  int32_t init(const std::any& cfg) override;
+  ErrorCode init(const std::any& cfg) override;
   void deinit() override;
 
   void start() override;

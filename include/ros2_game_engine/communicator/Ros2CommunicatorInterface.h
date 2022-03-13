@@ -1,9 +1,7 @@
 #ifndef ROS2_GAME_ENGINE_ROS2COMMUNICATOR_INTERFACE_H_
 #define ROS2_GAME_ENGINE_ROS2COMMUNICATOR_INTERFACE_H_
 
-//C system headers
-
-//C++ system headers
+//System headers
 #include <cstdint>
 #include <memory>
 #include <functional>
