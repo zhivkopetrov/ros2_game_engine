@@ -4,14 +4,16 @@
 //System headers
 #include <cstdint>
 #include <thread>
+#include <memory>
 
 //Other libraries headers
-#include <rclcpp/executors/static_single_threaded_executor.hpp>
+#include <rclcpp/executor.hpp>
 #include "game_engine/communicator/Communicator.h"
 
 //Own components headers
 
 //Forward declarations
+struct Ros2CommunicatorConfig;
 
 class Ros2Communicator final : public Communicator {
 public:
@@ -25,6 +27,8 @@ public:
   void unregisterNode(const std::shared_ptr<rclcpp::Node>& node);
 
 private:
+  void createExecutor(const Ros2CommunicatorConfig& cfg);
+
   std::thread _ros2ExecutorThread;
 
   /* StaticSingleThreadedExecutor expects all nodes to have their
@@ -32,7 +36,7 @@ private:
    *
    * NOTE: constructor of the executor expects ros to be initialized
    * */
-  rclcpp::executors::StaticSingleThreadedExecutor _executor;
+  std::unique_ptr<rclcpp::Executor> _executor;
 };
 
 #endif /* ROS2_GAME_ENGINE_ROS2COMMUNICATOR_H_ */

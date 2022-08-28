@@ -22,14 +22,16 @@ add_library(
     STATIC
         ${_INC_DIR}/communicator/Ros2Communicator.h
         ${_INC_DIR}/communicator/Ros2CommunicatorInterface.h
+        ${_INC_DIR}/communicator/config/Ros2CommunicatorConfig.h
         
         ${_SRC_DIR}/communicator/Ros2Communicator.cpp
+        ${_SRC_DIR}/communicator/config/Ros2CommunicatorConfig.cpp
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 #NOTE: 
-#rlccpp is not a plain cmake package so it can't be directly link against used
+#rlccpp is not a plain cmake package so it can't be directly linked against
 #the populated rclcpp_INCLUDE_DIRS and rclcpp_LIBRARIES from find_package(rclcpp)
 target_include_directories(
     ${PROJECT_NAME} 
