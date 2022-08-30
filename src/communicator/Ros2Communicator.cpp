@@ -34,6 +34,7 @@ ErrorCode Ros2Communicator::init(const std::any& cfg) {
 }
 
 void Ros2Communicator::deinit() {
+  shutdown();
   _ros2ExecutorThread.join();
 }
 
