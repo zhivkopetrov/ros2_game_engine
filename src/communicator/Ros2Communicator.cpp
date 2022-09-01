@@ -10,7 +10,6 @@
 #include "utils/Log.h"
 
 //Own components headers
-#include "ros2_game_engine/communicator/config/Ros2CommunicatorConfig.h"
 
 ErrorCode Ros2Communicator::init(const std::any& cfg) {
   ErrorCode err = ErrorCode::SUCCESS;
@@ -30,20 +29,31 @@ ErrorCode Ros2Communicator::init(const std::any& cfg) {
   }
 
   createExecutor(parsedCfg);
+  _executionPolicy = parsedCfg.executionPolicy;
+
   return ErrorCode::SUCCESS;
 }
 
 void Ros2Communicator::deinit() {
   shutdown();
-  _ros2ExecutorThread.join();
+
+  if (ExecutionPolicy::RUN_IN_DEDICATED_THREAD == _executionPolicy) {
+    _ros2ExecutorThread.join();
+  }
 }
 
 void Ros2Communicator::start() {
-  _ros2ExecutorThread = std::thread([this]() {
+  const auto spinCb = [this]() {
     LOG("Spinning on ROS2 Executor");
     //blocking call
     _executor->spin();
-  });
+  };
+
+  if (ExecutionPolicy::RUN_IN_DEDICATED_THREAD == _executionPolicy) {
+    _ros2ExecutorThread = std::thread(spinCb);
+  } else { //ExecutionPolicy::BLOCKING
+    spinCb();
+  }
 }
 
 void Ros2Communicator::shutdown() {

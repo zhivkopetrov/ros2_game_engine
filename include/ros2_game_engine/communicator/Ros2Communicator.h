@@ -11,9 +11,9 @@
 #include "game_engine/communicator/Communicator.h"
 
 //Own components headers
+#include "ros2_game_engine/communicator/config/Ros2CommunicatorConfig.h"
 
 //Forward declarations
-struct Ros2CommunicatorConfig;
 
 class Ros2Communicator final : public Communicator {
 public:
@@ -29,6 +29,7 @@ public:
 private:
   void createExecutor(const Ros2CommunicatorConfig& cfg);
 
+  ExecutionPolicy _executionPolicy = ExecutionPolicy::RUN_IN_DEDICATED_THREAD;
   std::thread _ros2ExecutorThread;
 
   /* StaticSingleThreadedExecutor expects all nodes to have their
