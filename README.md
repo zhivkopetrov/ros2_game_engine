@@ -9,13 +9,15 @@ The game_engine library could be found here: game_engine - https://github.com/zh
 - Convinient way to create and configure the standard executors provided by ROS2
 - Ability to block the calling thread or spawn a dedicated thread, where the executor will run
 - The supported executors are:
--- SINGLE_THREADED - single thread callback execution. ROS2 timers and callbacks could be dynamically added/removed
--- STATIC_SINGLE_THREADED - single thread callback execution. ROS2 timers and callbacks can only be provided during initialization. This enables efficient work of the executor
--- MULTI_THREADED - multi thread callback execution. ROS2 timers and callbacks could be dynamically added/removed. Callbacks should be configured using ROS2 callback_groups
+```
+- SINGLE_THREADED - single thread callback execution. ROS2 timers and callbacks could be dynamically added/removed
+- STATIC_SINGLE_THREADED - single thread callback execution. ROS2 timers and callbacks can only be provided during initialization. This enables efficient work of the executor
+- MULTI_THREADED - multi thread callback execution. ROS2 timers and callbacks could be dynamically added/removed. Callbacks should be configured using ROS2 callback_groups
+```
 
 **Library specifics**
 - A ROS2 node should be explicitly added to the executor before sppinning (running). Use the provided API
-- The ROS2 communicator implemented in the library is constructed as game_engine communicator
+- The ROS2 communicator implemented in the library can easily be constructed as game_engine communicator
 
 Examples:
 ```
