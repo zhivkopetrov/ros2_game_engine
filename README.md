@@ -72,7 +72,6 @@ target_link_libraries(
         ros2_game_engine::ros2_game_engine
 )
 ```
-- Example usage project: https://github.com/zhivkopetrov/dev_battle.git
 
 
 **Usage as part of ROS(catkin) / ROS2(colcon) meta-build systems**
