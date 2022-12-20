@@ -1,10 +1,18 @@
 //Corresponding header
+
+//ROS2 implementation produces -Werror=shadow warnings under g++
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshadow"
+
 #include "ros2_game_engine/communicator/Ros2Communicator.h"
 
 //System headers
 
 //Other libraries headers
 #include <rclcpp/executors.hpp>
+
+#pragma GCC diagnostic pop
+
 #include "utils/data_type/EnumClassUtils.h"
 #include "utils/ErrorCode.h"
 #include "utils/Log.h"
