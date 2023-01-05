@@ -1,11 +1,10 @@
 # ros2_game_engine
 
-**A C++ ROS2 communicator static library**
-
+## A C++ ROS2 communicator static library
 The library is meant to be used as extension of the game_engine library.
-The game_engine library could be found here: game_engine - https://github.com/zhivkopetrov/game_engine
+- https://github.com/zhivkopetrov/game_engine
 
-**The ROS2 communicator library supports:**
+## The ROS2 communicator library supports:
 - Convinient way to create and configure the standard executors provided by ROS2
 - Ability to block the calling thread or spawn a dedicated thread, where the executor will run
 - The supported executors are:
@@ -15,7 +14,7 @@ The game_engine library could be found here: game_engine - https://github.com/zh
 - MULTI_THREADED - multi thread callback execution. ROS2 timers and callbacks could be dynamically added/removed. Callbacks should be configured using ROS2 callback_groups
 ```
 
-**Library specifics**
+## Library specifics
 - A ROS2 node should be explicitly added to the executor before sppinning (running). Use the provided API
 - The ROS2 communicator implemented in the library can easily be constructed as game_engine communicator
 
@@ -62,7 +61,7 @@ int32_t main(int32_t argc, char **args) {
 }
 ```
 
-**Usage from plain CMake**
+## Usage from plain CMake
 - Consume directly with find_package(ros2_game_engine) in a CMakeLists.txt
 - Link against your target with suitable access modifier
 ```
@@ -73,20 +72,30 @@ target_link_libraries(
 )
 ```
 
-
-**Usage as part of ROS(catkin) / ROS2(colcon) meta-build systems**
+## Usage as part ROS2(colcon) meta-build systems
 - Consume directly with find_package(ros2_game_engine) in the package CMakeLists.txt
 - Link agains your target
-- The library automatically exposes and install it's artifacts following ROS/ROS2 structure
+- The library automatically exposes and install it's artifacts following ROS2 structure
 - Example usage project: https://github.com/zhivkopetrov/robotics_v1
 
-
-**Dependencies**
+## Dependencies
 - cmake_helpers - https://github.com/zhivkopetrov/cmake_helpers.git
-- The provided library CMakeLists.txt assumes the helpers.cmake from cmake_helpers repo have already been included
+- utils - https://github.com/zhivkopetrov/utils
+- resource_utils - https://github.com/zhivkopetrov/resource_utils
+- sdl_utils - https://github.com/zhivkopetrov/sdl_utils
+- manager_utils - https://github.com/zhivkopetrov/manager_utils
 - game_engine - https://github.com/zhivkopetrov/game_engine
 
+## Supported Platforms
+Linux:
+  - g++ 12
+  - clang++ 14
+  - Emscripten (em++) 3.1.28
+  - Robot Operating System 2 (ROS2)
+    - Through colcon meta-build system (CMake based)
+  - Robot Operating System 1 (ROS1)
+    - Through catkin meta-build system (CMake based)
+      - Due to soon ROS1 end-of-life catkin builds are not actively supported
 
-**Platform support**
-- Tested on Unix, Windows
-- Never tested on Mac
+Windows:
+  - MSVC++ (>= 14.20) Visual Studio 2019
