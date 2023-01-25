@@ -30,26 +30,36 @@ add_library(
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
-#NOTE: 
-#rlccpp is not a plain cmake package so it can't be directly linked against
-#the populated rclcpp_INCLUDE_DIRS and rclcpp_LIBRARIES from find_package(rclcpp)
 target_include_directories(
     ${PROJECT_NAME} 
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${_INC_FOLDER_NAME}>
         $<INSTALL_INTERFACE:${_INC_FOLDER_NAME}>
-        ${rclcpp_INCLUDE_DIRS}
 )
 
 target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
         game_engine::game_engine
-        ${rclcpp_LIBRARIES}
+)
+
+ament_export_targets(
+    ${PROJECT_NAME}Targets
+        HAS_LIBRARY_TARGET
+)
+
+ament_target_dependencies(
+    ${PROJECT_NAME}
+    PUBLIC
+        rclcpp
 )
 
 #requirement for future packages that depend on this target
-ament_export_dependencies(rclcpp)
+ament_export_dependencies(
+    ${PROJECT_NAME}
+    PUBLIC
+        rclcpp
+)
 
 if(NOT DISABLE_ROS_TOOLING)
     # Ament uses non-monolith build (separate build and install steps).

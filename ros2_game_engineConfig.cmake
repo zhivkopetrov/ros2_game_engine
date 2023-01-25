@@ -2,7 +2,9 @@ include(CMakeFindDependencyMacro)
 
 #find_dependency will correctly forward REQUIRED or QUIET args to the consumer
 #find_package is only for internal use
+find_dependency(cmake_helpers REQUIRED)
 find_dependency(game_engine REQUIRED)
+find_dependency(rclcpp REQUIRED)
 
 if(NOT TARGET ros2_game_engine::ros2_game_engine)
   include(${CMAKE_CURRENT_LIST_DIR}/ros2_game_engineTargets.cmake)
