@@ -7,7 +7,7 @@
 
 //Own components headers
 #include "utils/data_type/EnumClassUtils.h"
-#include "utils/Log.h"
+#include "utils/log/Log.h"
 
 std::string getExecutorName(ExecutorType executorType) {
   switch (executorType) {
